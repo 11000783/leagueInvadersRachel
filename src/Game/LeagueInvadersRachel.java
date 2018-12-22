@@ -12,12 +12,11 @@ public class LeagueInvadersRachel {
 	}
 
 	JFrame frame = new JFrame();
-	GamePanel panel = new GamePanel();
-	
+	GamePanel panel;
 
 	LeagueInvadersRachel() {
 		frame = new JFrame();
-		panel = new GamePanel();
+
 	}
 
 	void setup() {
@@ -30,8 +29,8 @@ public class LeagueInvadersRachel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(x, y);
 		frame.getContentPane().setPreferredSize(new Dimension(x, y));
-        frame.pack();
-        new GamePanel().startGame();
+		frame.pack();
+		panel.startGame();
 
 	}
 }
