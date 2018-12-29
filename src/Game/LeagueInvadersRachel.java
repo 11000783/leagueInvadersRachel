@@ -31,6 +31,5 @@ public class LeagueInvadersRachel {
 		frame.getContentPane().setPreferredSize(new Dimension(x, y));
 		frame.pack();
 		panel.startGame();
-
 	}
 }
