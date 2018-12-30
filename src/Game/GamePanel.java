@@ -1,4 +1,5 @@
 package Game;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -17,14 +18,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
-Font titleFont;
-Font instFont;
+	Font titleFont;
+	Font instFont;
+	Rocketship ship = new Rocketship(250, 700, 50, 50);
+ObjectManager manager = new ObjectManager(ship);
 	void updateMenuState() {
 
 	}
 
 	void updateGameState() {
-
+		manager.update();
 	}
 
 	void updateEndState() {
@@ -40,13 +43,13 @@ Font instFont;
 		g.setFont(instFont);
 		g.drawString("Press ENTER to start", 95, 400);
 		g.drawString("Press SPACE for instructions", 50, 600);
-		
+
 	}
 
 	void drawGameState(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, 500, 800);
-		
+		manager.draw(g);
 	}
 
 	void drawEndState(Graphics g) {
@@ -82,8 +85,8 @@ Font instFont;
 
 	GamePanel() {
 		time = new Timer(1000 / 60, this);
-titleFont = new Font("Arial", Font.PLAIN, 48);
-instFont = new Font("Arial", Font.PLAIN, 30);
+		titleFont = new Font("Arial", Font.PLAIN, 48);
+		instFont = new Font("Arial", Font.PLAIN, 30);
 	}
 
 	void startGame() {
@@ -112,24 +115,48 @@ instFont = new Font("Arial", Font.PLAIN, 30);
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyCode() == 10) {	
-		if(currentState > END_STATE){
-	            currentState = MENU_STATE;
-	    }
-			currentState ++;
-	
+		if (e.getKeyCode() == 40) {
+			ship.speedy = 10;
 		}
-		System.out.println(e.getKeyCode());
+		if (e.getKeyCode() == 38) {
+			ship.speedy = -10;
+		}
+		if (e.getKeyCode() == 39) {
+			ship.speedx = 10;
+		}
+		if (e.getKeyCode() == 37) {
+			ship.speedx = -10;
+		}
+		if (e.getKeyCode() == 10) {
+			currentState++;
+			if (currentState > END_STATE) {
+				currentState = MENU_STATE;
+			}		
+			
+		}
 	}
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
+		if (e.getKeyCode() == 38) {
+			ship.speedy = 0;
+		}
+		if (e.getKeyCode() == 40) {
+			ship.speedy = 0;
+		}
+		if (e.getKeyCode() == 39) {
+			ship.speedx = 0;
+		}
+		if (e.getKeyCode() == 37) {
+			ship.speedx = 0;
+		}
+
 	}
 }

@@ -7,20 +7,21 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-
-	public void GameObject(int x, int y, int width, int height) {
+	boolean isAlive;
+	public GameObject(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.isAlive = true;
 	}
 
 	void update() {
-		x += 100;
-		y += 30;
+
 	}
 
 	void draw(Graphics g) {
-		g.fillRect(x, y, 100, 100);
+
 	}
+	
 }
