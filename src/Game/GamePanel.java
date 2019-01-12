@@ -121,24 +121,27 @@ ObjectManager manager = new ObjectManager(ship);
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode() == 40) {
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			ship.speedy = 10;
 		}
-		if (e.getKeyCode() == 38) {
+		else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			ship.speedy = -10;
 		}
-		if (e.getKeyCode() == 39) {
+		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			ship.speedx = 10;
 		}
-		if (e.getKeyCode() == 37) {
+		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			ship.speedx = -10;
 		}
-		if (e.getKeyCode() == 10) {
+		else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
 			if (currentState > END_STATE) {
-				currentState = MENU_STATE;
+				currentState = MENU_STATE;  
 			}		
-			
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			manager.addProjectille(new Projectille(ship.x, ship.y, 10, 10));
+		
 		}
 	}
 

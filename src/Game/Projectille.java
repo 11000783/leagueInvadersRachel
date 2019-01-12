@@ -14,11 +14,12 @@ public class Projectille extends GameObject{
 	if (y < 0) {
 		isAlive = false;
 	}
+	
 	}
 
 	void draw(Graphics g) {
 		g.setColor(Color.RED);
-
 		g.fillRect(x, y, width, height);
+	System.out.println("draw");
 	}
 }
