@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -21,13 +20,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont;
 	Font instFont;
 	Rocketship ship = new Rocketship(250, 700, 50, 50);
-ObjectManager manager = new ObjectManager(ship);
+	ObjectManager manager = new ObjectManager(ship);
+
 	void updateMenuState() {
 
 	}
 
 	void updateGameState() {
 		manager.update();
+		manager.manageEnemies();
 	}
 
 	void updateEndState() {
@@ -123,25 +124,20 @@ ObjectManager manager = new ObjectManager(ship);
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			ship.speedy = 10;
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_UP) {
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			ship.speedy = -10;
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			ship.speedx = 10;
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			ship.speedx = -10;
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
 			if (currentState > END_STATE) {
-				currentState = MENU_STATE;  
-			}		
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			manager.addProjectille(new Projectille(ship.x, ship.y, 10, 10));
-		
+				currentState = MENU_STATE;
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			manager.addProjectille(new Projectille(ship.x + 20, ship.y, 10, 10));
+
 		}
 	}
 
