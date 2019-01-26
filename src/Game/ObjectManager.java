@@ -7,13 +7,14 @@ import java.util.Random;
 public class ObjectManager {
 	long enemyTimer = 0;
 	int enemySpawnTime = 1000;
+	int score;
 	Rocketship ship;
 	ArrayList<Projectille> projectiles = new ArrayList<Projectille>();
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 
 	public ObjectManager(Rocketship object) {
 		this.ship = object;
-
+		this.score = 0;
 	}
 
 	void update() {
@@ -67,5 +68,25 @@ public class ObjectManager {
 				projectiles.remove(i);
 			}
 		}
+	}
+
+	void checkCollision() {
+		for (Alien a : aliens) {
+			if (ship.collisionBox.intersects(a.collisionBox)) {
+				ship.isAlive = false;
+			}
+
+			for (Projectille p : projectiles) {
+				if (p.collisionBox.intersects(a.collisionBox)) {
+					a.isAlive = false;
+					p.isAlive = false;
+					score += 1;
+				}
+			}
+		}
+	}
+
+	void getScore() {
+
 	}
 }
